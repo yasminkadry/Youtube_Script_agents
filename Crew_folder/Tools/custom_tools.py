@@ -1,6 +1,7 @@
 import os
 import time
 import random
+import streamlit as st
 from fpdf import FPDF
 from crewai import LLM
 from docx import Document
@@ -12,7 +13,8 @@ from youtube_transcript_api.formatters import TextFormatter
 
 # Load environment first
 load_dotenv()
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") or st.secrets.get("GEMINI_API_KEY")
+
 if not GEMINI_API_KEY:
     raise ValueError("Missing GEMINI_API_KEY in .env")
 

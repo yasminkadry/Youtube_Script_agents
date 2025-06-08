@@ -1,4 +1,5 @@
 import os
+import streamlit as st
 from typing import List
 from dotenv import load_dotenv
 from crewai import Agent, Task, Crew, Process,LLM
@@ -8,7 +9,7 @@ from Crew_folder.Tools.custom_tools import fetch_transcript,process_content ,exp
 
 # Load API key for initialize the llm.
 load_dotenv()
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") or st.secrets.get("GEMINI_API_KEY")
 if GEMINI_API_KEY is None:
     raise ValueError("GEMINI_API_KEY not found. Please check your .env file.")
 

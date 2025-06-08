@@ -14,7 +14,7 @@ from Crew_folder.crew import YouTubeScriptCrew
 
 # ------------------ Load API Key ------------------
 load_dotenv()
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") or st.secrets.get("GEMINI_API_KEY")
 
 # ------------------ App Configuration ------------------
 favicon = Image.open("assets/favicon.png")
