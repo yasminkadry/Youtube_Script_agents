@@ -1,3 +1,6 @@
+_import_('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import re
 import os
 import time
