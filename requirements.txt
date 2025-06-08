@@ -7,3 +7,4 @@ Requests==2.32.3
 streamlit==1.45.1
 streamlit_lottie==0.0.5
 youtube_transcript_api==1.0.3
+pysqlite3-binary
