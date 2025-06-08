@@ -1,6 +1,6 @@
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+# __import__('pysqlite3')
+# import sys
+# sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import re
 import os
 import time
@@ -191,28 +191,19 @@ if submitted:
             inputs = {
                 "video_url": video_url,
                 "instruction": instruction,
-                "format": "word"
+                "format": export_format
             }
-            crew.kickoff(inputs=inputs)
+            result = crew.kickoff(inputs=inputs)
             tip_placeholder = st.empty()
             tip_placeholder.info(get_tip())
-            time.sleep(5)  # show tip for 5 seconds
-            tip_placeholder.empty()  # clear tip
+            time.sleep(5)  
+            tip_placeholder.empty()  
+            
+            if not isinstance(result, str):
+                result = str(result) if result is not None else ""
 
-
-            # Read the output from the file
-            output_file = f"output\output.docx"
-            if not os.path.exists(output_file):
-                st.error("❌ Output file not found.")
-                st.stop()
-
-
-            doc = Document(output_file)
-            output_text = "\n".join([para.text for para in doc.paragraphs])
-
-
-            # Detect Arabic presence for RTL layout
-            is_arabic = bool(re.search(r'[\u0600-\u06FF]', output_text))
+            # Then apply regex
+            is_arabic = bool(re.search(r'[\u0600-\u06FF]', result))
 
             st.success("✅ Done! Here's your result:")
             st.markdown("### 📄 Result")
@@ -223,7 +214,7 @@ if submitted:
             # Render output using safe HTML container with markdown formatting
             st.markdown(f"""
                 <div class="output-container {text_direction_class}">
-                    <pre>{output_text}</pre>
+                    <pre>{result}</pre>
                 </div>
             """, unsafe_allow_html=True)
 
@@ -244,7 +235,7 @@ if submitted:
                     pdf.set_font('Times', size=12)
 
                     # Split the output text into lines and add to PDF
-                    for line in output_text.split('\n'):
+                    for line in result.split('\n'):
                         pdf.multi_cell(0, 10, line)
 
                     # Get PDF data as bytes
@@ -264,7 +255,7 @@ if submitted:
 
                     # Create Word document
                     doc = Document()
-                    for line in output_text.split('\n'):
+                    for line in result.split('\n'):
                         doc.add_paragraph(line)
 
                     # Save to a BytesIO buffer

@@ -1,17 +1,3 @@
-# controller_task:
-#   description: >
-#     Validate the provided YouTube URL to ensure it is a properly formatted
-#     and accessible link. Focus on:
-#     1. Checking that the URL matches YouTube's official structure
-#     2. Extracting the video ID from the URL
-#     3. Confirming that the video is publicly available
-
-#     Return a status indicating whether the URL is valid, along with any useful metadata.
-#   expected_output: >
-#     A structured validation result confirming whether the YouTube URL is valid or not.
-#     Include extracted video ID and any error messages if applicable.
-#   agent: controller
-
 transcript_task:
   description: >
     Fetch the transcript for the {video_url} video. Focus on:
@@ -52,8 +38,8 @@ export_task:
     Save the file in an accessible location and return the file path.
   expected_output: >
     A formatted PDF or Word document containing the final processed content,
-    ready for download or sharing. Include the full path to the file.
+    ready for download or sharing. Include only the content processed without the status.
   agent: export
   context:
     - instruction_task
-  output_file: output/final_document.pdf
+  output_file: output/final_document.{format}

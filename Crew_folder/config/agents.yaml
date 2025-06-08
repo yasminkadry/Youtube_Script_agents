@@ -1,17 +1,3 @@
-# controller:
-#   role: >
-#     YouTube URL Validation Expert
-#   goal: >
-#     Ensure the provided YouTube video URL is valid, well-formatted,
-#     and ready for transcript extraction.
-#   backstory: >
-#     You are an experienced backend engineer specializing in
-#     validating web resources and catching malformed inputs.
-#     You ensure that only clean, valid URLs are passed downstream
-#     to avoid any processing errors later in the pipeline.
-#     You use the `validate_url` tool to check the format and structure of the input link,
-#     returning either a success response with the clean URL or an error message if it's invalid.
-
 transcript:
   role: >
     YouTube Transcript Extractor
@@ -57,6 +43,6 @@ export:
     formatted, visually appealing, and ready to be downloaded
     or shared. You use the `export_content` tool to save the
     processed result in the user's preferred format — either PDF or Word —
-    and return the download path to the user.
+    and return the file to the user.
     
   llm: google/gemini-2.0-flash

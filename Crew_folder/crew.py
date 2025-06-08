@@ -23,14 +23,7 @@ class YouTubeScriptCrew:
     agents: List[Agent]
     tasks: List[Task]
 
-    # @agent
-    # def controller(self) -> Agent:
-    #     return Agent(
-    #         config=self.agents_config['controller'],
-    #         llm=llm,
-    #         verbose=True,
-    #         # tools=[validate_url]
-    #     )
+
 
     @agent
     def transcript(self) -> Agent:
@@ -58,13 +51,7 @@ class YouTubeScriptCrew:
             llm=llm,
             tools= [export_content]
         )
-
-    # @task
-    # def controller_task(self) -> Task:
-    #     return Task(
-    #         config=self.tasks_config['controller_task']
-    #     )
-
+    
     @task
     def transcript_task(self) -> Task:
         return Task(
@@ -97,35 +84,35 @@ class YouTubeScriptCrew:
         )
 
 
-# if __name__ == "__main__":
-#     inputs = {
-#         "video_url": "https://youtu.be/QtEUU9ppVLU?si=5INC4JIclhAr8a3e",
-#         "instruction": "Summarize in 3 bullet points with emojis",
-#         "format": "word"  
-#     }
+if __name__ == "__main__":
+    inputs = {
+        "video_url": "https://youtu.be/QtEUU9ppVLU?si=5INC4JIclhAr8a3e",
+        "instruction": "Summarize in 3 bullet points with emojis",
+        "format": "pdf"  
+    }
 
-#     crew = YouTubeScriptCrew().crew()
-#     result = crew.kickoff(inputs=inputs)
+    crew = YouTubeScriptCrew().crew()
+    result = crew.kickoff(inputs=inputs)
 
-#     print("\n===== YouTubeScriptCrew Results =====")
+    print("\n===== YouTubeScriptCrew Results =====")
 
-#     if "validation" in result:
-#         print("\nValidation:")
-#         print(result["validation"])
-#         if result["validation"].get("status") == "error":
-#             exit()
+    if "validation" in result:
+        print("\nValidation:")
+        print(result["validation"])
+        if result["validation"].get("status") == "error":
+            exit()
 
-#     if "transcript" in result:
-#         print("\nTranscript (preview):")
-#         print(result["transcript"].get("transcript", "")[:300] + "...")
+    if "transcript" in result:
+        print("\nTranscript (preview):")
+        print(result["transcript"].get("transcript", "")[:300] + "...")
 
-#     if "processed" in result:
-#         print("\nProcessed Output:")
-#         print(result["processed"].get("processed_content", ""))
+    if "processed" in result:
+        print("\nProcessed Output:")
+        print(result["processed"].get("processed_content", ""))
 
-#     if "export" in result:
-#         print("\nExport Result:")
-#         if result["export"]["status"] == "success":
-#             print("File saved at:", result["export"]["file_path"])
-#         else:
-#             print("Export error:", result["export"]["message"])
+    if "export" in result:
+        print("\nExport Result:")
+        if result["export"]["status"] == "success":
+            print("File saved at:", result["export"]["file_path"])
+        else:
+            print("Export error:", result["export"]["message"])
