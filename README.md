@@ -47,6 +47,7 @@ Each agent uses tools defined in `Crew_folder/Tools`, including:
    ```bash
    git clone (https://github.com/yasminkadry/Youtube_Script_agents)
    cd Youtube_Script_agents
+   ```
 ````
 
 2. **Create a virtual environment and activate it**
@@ -68,7 +69,6 @@ Each agent uses tools defined in `Crew_folder/Tools`, including:
    ```
    GEMINI_API_KEY=your_gemini_key_here
    ```
-
 ---
 
 ## 🚀 Running the App
