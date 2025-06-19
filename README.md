@@ -48,7 +48,7 @@ Each agent uses tools defined in `Crew_folder/Tools`, including:
    git clone (https://github.com/yasminkadry/Youtube_Script_agents)
    cd Youtube_Script_agents
    ```
-````
+
 
 2. **Create a virtual environment and activate it**
 
