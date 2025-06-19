@@ -1,8 +1,3 @@
-Here’s a professional and clear `README.md` file for your **YouTube Script Summarizer** project using CrewAI with Gemini:
-
----
-
-````markdown
 # 🎬 YouTube Script Summarizer with CrewAI 🤖
 
 This project uses [CrewAI](https://docs.crewai.com/) with **Gemini LLM** to process YouTube videos by:
